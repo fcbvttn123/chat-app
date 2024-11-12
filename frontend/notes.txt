@@ -1,0 +1,27 @@
++ FOLDER STRUCTURE 
+
+src/pages: 
+
+    ChatPage.jsx 
+
+    Login.jsx
+
+    RegisterAccount.jsx 
+
+
++  ROUTER
+
+/register-account
+
+/login
+
+/ -> will be redirected to /chat-page
+
+/chat-page
+
+
++ LEARNING
+
+    Placeholder Route 
+
+        <Route path="/" element={<Navigate to="/chat-page" replace />} />
