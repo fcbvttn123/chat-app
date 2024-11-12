@@ -22,8 +22,14 @@ export function Login() {
           <GoogleIcon /> Continue with Google
         </Button>
         <Separator>Or</Separator>
-        <TextInput name="username" placeholder="Username" />
-        <Button customStyle={{ marginTop: "15px" }}>
+        <TextInput name="username" type="text" placeholder="Username" />
+        <TextInput
+          name="password"
+          type="password"
+          placeholder="Password"
+          customStyle={{ margin: "15px 0 15px 0" }}
+        />
+        <Button>
           Continue <ContinueIcon />
         </Button>
       </form>
