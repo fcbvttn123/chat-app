@@ -8,6 +8,10 @@ src/pages:
 
     RegisterAccount.jsx 
 
+src/components: 
+
+    Layout.jsx
+
 
 +  ROUTER
 
