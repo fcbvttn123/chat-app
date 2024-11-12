@@ -12,6 +12,12 @@ src/components:
 
     Layout.jsx
 
+    Button.jsx
+
+    Separator.jsx
+
+    TextInput.jsx
+
 
 +  ROUTER
 
@@ -29,3 +35,51 @@ src/components:
     Placeholder Route 
 
         <Route path="/" element={<Navigate to="/chat-page" replace />} />
+
+    Tailwind CSS Properties  
+
+        // Plain CSS 
+        border: 2px solid #323232;
+        box-shadow: 4px 4px #323232;
+
+        // Tailwind CSS
+        border-2 border-solid border-[#323232] shadow-[4px_4px_#323232]
+
+    Tailwind CSS Group 
+
+        <button className="group">
+            <div className="w-[100%] group-hover:w-full"></div>
+        </button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
