@@ -1,33 +1,42 @@
++ RUN PROJECT
+
+    npm i 
+
+    npm run dev 
+
+
 + FOLDER STRUCTURE 
 
-src/pages: 
+    src/pages: 
 
-    ChatPage.jsx 
+        ChatPage.jsx 
 
-    Login.jsx
+        Login.jsx
 
-    RegisterAccount.jsx 
+        RegisterAccount.jsx 
 
-src/components: 
+    src/components: 
 
-    Layout.jsx
+        Layout.jsx
 
-    Button.jsx
+        Button.jsx
 
-    Separator.jsx
+        Separator.jsx
 
-    TextInput.jsx
+        TextInput.jsx
+
+        AuthRequired.jsx
 
 
 +  ROUTER
 
-/register-account
+    /register-account
 
-/login
+    /login
 
-/ -> will be redirected to /chat-page
+    / -> will be redirected to /chat-page
 
-/chat-page
+    /chat-page
 
 
 + LEARNING
