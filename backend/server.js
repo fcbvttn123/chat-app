@@ -1,14 +1,13 @@
 require("dotenv").config()
 const express = require("express")
 const mongoose = require("mongoose")
+const userRoutes = require("./routes/user")
 
 const app = express()
 
 app.use(express.json())
 
-app.get("/", (req, res) => {
-  res.json({ propertyName: "Value" })
-})
+app.use("/api/user", userRoutes)
 
 mongoose
   .connect(process.env.Mong_URI)

@@ -13,7 +13,7 @@
         npm run dev 
 
 
-+ FOLDER STRUCTURE 
++ FOLDER STRUCTURE (Frontend)
 
     src/pages: 
 
@@ -36,7 +36,20 @@
         AuthRequired.jsx
 
 
-+  ROUTER
++ FOLDER STRUCTURE (Backend)
+
+    ./server.js
+
+    ./server.js/controllers
+
+        user.js
+
+    ./server.js/routes
+
+        user.js
+
+
++  ROUTER (Frontend)
 
     /register-account
 
@@ -45,6 +58,13 @@
     / -> will be redirected to /chat-page
 
     /chat-page
+
+
++  ROUTER (Backend)
+
+    /api/user/login
+
+    /api/user/register
 
 
 + LEARNING
