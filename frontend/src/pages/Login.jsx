@@ -44,5 +44,5 @@ export function Login() {
 
 function formSubmitted(e) {
   e.preventDefault()
-  console.log("Form Submitted")
+  console.log("Login event")
 }
