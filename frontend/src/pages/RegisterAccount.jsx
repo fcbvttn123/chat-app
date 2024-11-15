@@ -26,12 +26,12 @@ export function RegisterAccount() {
           placeholder="Password"
           customStyle={{ margin: "15px 0 15px 0" }}
         />
-        <Button>Create Account</Button>
+        <Button type="submit">Create Account</Button>
         <Separator customStyles={{ marginTop: "40px" }}>
           Already had an account?
         </Separator>
         <Link to="/login" className="w-full">
-          <Button>Login</Button>
+          <Button type="button">Login</Button>
         </Link>
       </form>
     </div>

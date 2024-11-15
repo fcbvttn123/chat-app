@@ -1,6 +1,8 @@
-export function Button({ children, customStyle }) {
+export function Button({ children, customStyle, onClick, type }) {
   return (
     <button
+      type={type}
+      onClick={onClick}
       style={customStyle}
       className="group bg-white w-full px-[15px] py-[6px] flex items-center justify-center gap-[5px] rounded-md border-2 border-solid border-[#323232] shadow-[4px_4px_#323232] transition-all duration-[250ms] relative overflow-hidden z-[1] hover:text-[#e8e8e8]"
     >
