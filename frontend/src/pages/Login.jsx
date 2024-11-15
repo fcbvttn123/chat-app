@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { Button } from "../components/Button"
 import { ContinueIcon } from "../components/ContinueIcon"
 import { GoogleIcon } from "../components/GoogleIcon"
@@ -32,6 +33,10 @@ export function Login() {
         <Button>
           Continue <ContinueIcon />
         </Button>
+        <Separator>Don't have an account?</Separator>
+        <Link to="/register-account" className="w-full">
+          <Button>Sign Up</Button>
+        </Link>
       </form>
     </div>
   )

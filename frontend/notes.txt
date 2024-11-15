@@ -60,6 +60,14 @@
             <div className="w-[100%] group-hover:w-full"></div>
         </button>
 
+    Flex Box: grow elements to take up the remaining space of the box
+
+        <div class="flex justify-center w-full">
+            <div class="grow">Left</div>
+            <div>Middle</div>
+            <div class="grow">Right</div>
+        </div>
+
 
 
 
