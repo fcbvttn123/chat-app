@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom"
 import { Button } from "../components/Button"
-import { ContinueIcon } from "../components/ContinueIcon"
-import { GoogleIcon } from "../components/GoogleIcon"
 import { Separator } from "../components/Separator"
 import { TextInput } from "../components/TextInput"
 
