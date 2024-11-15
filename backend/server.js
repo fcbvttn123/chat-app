@@ -7,7 +7,7 @@ const app = express()
 
 app.use(express.json())
 
-app.use("/api/user", userRoutes)
+app.use("/api/auth", userRoutes)
 
 mongoose
   .connect(process.env.Mong_URI)
