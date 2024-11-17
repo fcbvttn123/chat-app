@@ -40,13 +40,17 @@
 
     ./server.js
 
-    ./server.js/controllers
+    ./controllers
 
         user.js
 
-    ./server.js/routes
+    ./routes
 
         user.js
+
+    ./utils
+
+        functions.js
 
 
 +  ROUTER (Frontend)
@@ -95,6 +99,25 @@
             <div>Middle</div>
             <div class="grow">Right</div>
         </div>
+
+    Schema and Model in MongoDB 
+
+        + Schema: a blueprint of how individual documents in a collection should look
+
+            const mongoose = require('mongoose')
+
+            const Schema = mongoose.Schema
+
+            const userSchema = new Schema({
+                username: { type: String, required: true, unique: true },
+                password: { type: String, required: true },
+                createdAt: { type: Date, default: Date.now },
+            })
+
+        + Model: a compiled version of the schema and acts as the interface to the collection
+
+            // This creates a model named User that maps to the "users collection" in the MongoDB database
+            const User = mongoose.model('User', userSchema)
 
 
 

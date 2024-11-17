@@ -1,9 +1,5 @@
-const jwt = require("jsonwebtoken")
 const AccountCollection = require("../models/user")
-
-function createToken(_id) {
-  return jwt.sign({ _id }, process.env.SECRET, { expiresIn: "3d" })
-}
+const { createToken } = require("../utils/functions")
 
 async function loginUser(req, res) {
   const { username, password } = req.body
