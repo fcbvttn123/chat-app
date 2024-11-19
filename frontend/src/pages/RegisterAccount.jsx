@@ -45,6 +45,7 @@ export function RegisterAccount() {
         <h2 className="pb-[40px] text-[#666] font-extrabold">
           Please fill out the form below
         </h2>
+        {error && <p className="mb-[20px] mt-[-20px] text-red-600">{error}</p>}
         <TextInput
           name="username"
           type="text"
