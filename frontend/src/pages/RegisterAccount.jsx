@@ -24,7 +24,7 @@ export function RegisterAccount() {
     setIsLoading(false)
   }
   function handleChange(e) {
-    const { name, value, type, checked } = event.target
+    const { name, value, type, checked } = e.target
     setFormData((prevFormData) => {
       return {
         ...prevFormData,
