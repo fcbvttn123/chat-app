@@ -4,8 +4,39 @@ import { ContinueIcon } from "../components/ContinueIcon"
 import { GoogleIcon } from "../components/GoogleIcon"
 import { Separator } from "../components/Separator"
 import { TextInput } from "../components/TextInput"
+import { useState } from "react"
 
 export function Login() {
+  // State Variables
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  })
+  const [error, setError] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
+  // Functions
+  function handleChange(e) {
+    const { name, value, type, checked } = e.target
+    setFormData((prevFormData) => {
+      return {
+        ...prevFormData,
+        [name]: type === "checkbox" ? checked : value,
+      }
+    })
+  }
+  function loginFormSubmitted(e) {
+    e.preventDefault()
+    setIsLoading(true)
+    console.log(formData)
+    setFormData({
+      username: "",
+      password: "",
+    })
+    setIsLoading(false)
+  }
+  function loginWithGoogle() {
+    console.log("Login with Google")
+  }
   return (
     // This div element is the form container, mainly used to center the form
     // It has full width and height of the parent component (Layout)
@@ -23,14 +54,23 @@ export function Login() {
           <GoogleIcon /> Continue with Google
         </Button>
         <Separator>Or</Separator>
-        <TextInput name="username" type="text" placeholder="Username" />
+        {error && <p className="mb-[20px] text-red-600">{error}</p>}
+        <TextInput
+          name="username"
+          type="text"
+          placeholder="Username"
+          value={formData.username}
+          onChange={handleChange}
+        />
         <TextInput
           name="password"
           type="password"
           placeholder="Password"
           customStyle={{ margin: "15px 0 15px 0" }}
+          value={formData.password}
+          onChange={handleChange}
         />
-        <Button type="submit">
+        <Button type="submit" disabled={isLoading}>
           Continue <ContinueIcon />
         </Button>
         <Separator>Don't have an account?</Separator>
@@ -40,13 +80,4 @@ export function Login() {
       </form>
     </div>
   )
-}
-
-function loginFormSubmitted(e) {
-  e.preventDefault()
-  console.log("Login event")
-}
-
-function loginWithGoogle() {
-  console.log("Login with Google")
 }
