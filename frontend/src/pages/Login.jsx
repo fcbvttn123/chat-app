@@ -31,7 +31,10 @@ export function Login() {
     if (loginResult?.error) {
       setError(loginResult.error)
     } else {
-      console.log(loginResult)
+      localStorage.setItem(
+        "REACT_CHAT_APP_V3_USER_TOKEN",
+        JSON.stringify(loginResult)
+      )
     }
     setFormData({
       username: "",
