@@ -34,7 +34,7 @@ export function Login() {
       setError(loginResult.error)
     } else {
       localStorage.setItem(
-        "REACT_CHAT_APP_V3_USER_TOKEN",
+        import.meta.env.VITE__LOCAL_STORAGE_KEY_USER_TOKEN,
         JSON.stringify(loginResult)
       )
       navigate("/")
