@@ -5,6 +5,7 @@ import { GoogleIcon } from "../components/GoogleIcon"
 import { Separator } from "../components/Separator"
 import { TextInput } from "../components/TextInput"
 import { useState } from "react"
+import { callPostAPI } from "../utils/functions"
 
 export function Login() {
   // State Variables
@@ -28,7 +29,7 @@ export function Login() {
   async function loginFormSubmitted(e) {
     e.preventDefault()
     setIsLoading(true)
-    let loginResult = await callLoginAPI(formData.username, formData.password)
+    let loginResult = await callPostAPI("/api/auth/login", formData)
     if (loginResult?.error) {
       setError(loginResult.error)
     } else {
@@ -90,16 +91,4 @@ export function Login() {
       </form>
     </div>
   )
-}
-
-async function callLoginAPI(username, password) {
-  let res = await fetch(`${import.meta.env.VITE__BACKEND_URL}/api/auth/login`, {
-    method: "POST",
-    body: JSON.stringify({ username, password }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-  let json = await res.json()
-  return json
 }

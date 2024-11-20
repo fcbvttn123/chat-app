@@ -1,3 +1,10 @@
++ Next
+
+    -> API call for register form
+
+    -> Update AuthRequired component (frontend)
+
+
 + RUN PROJECT
 
     cd frontend 
@@ -34,6 +41,12 @@
         TextInput.jsx
 
         AuthRequired.jsx
+
+    src/utils 
+
+        functions.jsx
+        
+            await callPostAPI("/api/auth/login", {username: value1, password: value2})
 
 
 + FOLDER STRUCTURE (Backend)
