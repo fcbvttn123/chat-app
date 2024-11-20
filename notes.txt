@@ -1,7 +1,5 @@
 + Next
 
-    -> API call for register form
-
     -> Update AuthRequired component (frontend)
 
 

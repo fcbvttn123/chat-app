@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Button } from "../components/Button"
 import { Separator } from "../components/Separator"
 import { TextInput } from "../components/TextInput"
 import { useState } from "react"
+import { callPostAPI } from "../utils/functions"
 
 export function RegisterAccount() {
   // State Variables
@@ -12,11 +13,21 @@ export function RegisterAccount() {
   })
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
+  const navigate = useNavigate()
   // Functions
-  function formSubmitted(e) {
+  async function formSubmitted(e) {
     e.preventDefault()
     setIsLoading(true)
-    console.log(formData)
+    let registerResult = await callPostAPI("/api/auth/register", formData)
+    if (registerResult?.error) {
+      setError(registerResult.error)
+    } else {
+      localStorage.setItem(
+        "REACT_CHAT_APP_V3_USER_TOKEN",
+        JSON.stringify(registerResult)
+      )
+      navigate("/")
+    }
     setFormData({
       username: "",
       password: "",
