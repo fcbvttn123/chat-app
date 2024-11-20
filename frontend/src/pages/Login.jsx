@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Button } from "../components/Button"
 import { ContinueIcon } from "../components/ContinueIcon"
 import { GoogleIcon } from "../components/GoogleIcon"
@@ -14,6 +14,7 @@ export function Login() {
   })
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
+  const navigate = useNavigate()
   // Functions
   function handleChange(e) {
     const { name, value, type, checked } = e.target
@@ -35,6 +36,7 @@ export function Login() {
         "REACT_CHAT_APP_V3_USER_TOKEN",
         JSON.stringify(loginResult)
       )
+      navigate("/")
     }
     setFormData({
       username: "",
