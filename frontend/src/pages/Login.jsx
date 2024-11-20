@@ -24,10 +24,15 @@ export function Login() {
       }
     })
   }
-  function loginFormSubmitted(e) {
+  async function loginFormSubmitted(e) {
     e.preventDefault()
     setIsLoading(true)
-    console.log(formData)
+    let loginResult = await callLoginAPI(formData.username, formData.password)
+    if (loginResult?.error) {
+      setError(loginResult.error)
+    } else {
+      console.log(loginResult)
+    }
     setFormData({
       username: "",
       password: "",
@@ -80,4 +85,16 @@ export function Login() {
       </form>
     </div>
   )
+}
+
+async function callLoginAPI(username, password) {
+  let res = await fetch(`${import.meta.env.VITE__BACKEND_URL}/api/auth/login`, {
+    method: "POST",
+    body: JSON.stringify({ username, password }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+  let json = await res.json()
+  return json
 }
