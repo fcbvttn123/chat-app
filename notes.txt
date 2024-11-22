@@ -40,6 +40,10 @@
 
         AuthRequired.jsx
 
+    src/context: 
+
+        AuthContext.jsx
+
     src/utils 
 
         functions.jsx
@@ -62,6 +66,8 @@
     ./utils
 
         functions.js
+
+    ./middleware/authRequired.js
 
 
 +  ROUTER (Frontend)
