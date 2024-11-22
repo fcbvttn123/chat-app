@@ -2,8 +2,9 @@ import { Link, useNavigate } from "react-router-dom"
 import { Button } from "../components/Button"
 import { Separator } from "../components/Separator"
 import { TextInput } from "../components/TextInput"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { callPostAPI } from "../utils/functions"
+import { AuthContext } from "../context/AuthContext"
 
 export function RegisterAccount() {
   // State Variables
@@ -14,6 +15,7 @@ export function RegisterAccount() {
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
+  const { dispatch } = useContext(AuthContext)
   // Functions
   async function formSubmitted(e) {
     e.preventDefault()
@@ -26,6 +28,7 @@ export function RegisterAccount() {
         import.meta.env.VITE__LOCAL_STORAGE_KEY_USER_TOKEN,
         JSON.stringify(registerResult)
       )
+      dispatch({ type: "SET_TOKEN", payload: registerResult.token })
       navigate("/")
     }
     setFormData({

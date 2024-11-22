@@ -4,8 +4,7 @@ import { AuthContext } from "../context/AuthContext"
 
 export function AuthRequired() {
   const { token } = useContext(AuthContext)
-  console.log(token)
-  let authenticated = false
+  let authenticated = token
   if (!authenticated) {
     return <Navigate to="/login" />
   }

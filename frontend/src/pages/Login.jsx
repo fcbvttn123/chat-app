@@ -4,8 +4,9 @@ import { ContinueIcon } from "../components/ContinueIcon"
 import { GoogleIcon } from "../components/GoogleIcon"
 import { Separator } from "../components/Separator"
 import { TextInput } from "../components/TextInput"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { callPostAPI } from "../utils/functions"
+import { AuthContext } from "../context/AuthContext"
 
 export function Login() {
   // State Variables
@@ -16,6 +17,7 @@ export function Login() {
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
+  const { dispatch } = useContext(AuthContext)
   // Functions
   function handleChange(e) {
     const { name, value, type, checked } = e.target
@@ -37,6 +39,7 @@ export function Login() {
         import.meta.env.VITE__LOCAL_STORAGE_KEY_USER_TOKEN,
         JSON.stringify(loginResult)
       )
+      dispatch({ type: "SET_TOKEN", payload: loginResult.token })
       navigate("/")
     }
     setFormData({

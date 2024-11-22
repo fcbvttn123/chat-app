@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react"
+import { createContext, useEffect, useReducer } from "react"
 
 export const AuthContext = createContext()
 
@@ -17,6 +17,13 @@ export function AuthContextProvider({ children }) {
   const [state, dispatch] = useReducer(authReducer, {
     token: null,
   })
+  useEffect(() => {
+    const localStorageData = JSON.parse(
+      localStorage.getItem(import.meta.env.VITE__LOCAL_STORAGE_KEY_USER_TOKEN)
+    )
+    localStorageData?.token &&
+      dispatch({ type: "SET_TOKEN", payload: localStorageData.token })
+  }, [])
   return (
     <AuthContext.Provider value={{ ...state, dispatch }}>
       {children}
