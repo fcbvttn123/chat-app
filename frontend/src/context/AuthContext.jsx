@@ -1,5 +1,9 @@
 import { createContext, useEffect, useReducer } from "react"
 
+export const AUTH_CONTEXT_ACTION_TYPE = {
+  SET_TOKEN: "SET_TOKEN",
+}
+
 export const AuthContext = createContext()
 
 export const authReducer = (state, action) => {

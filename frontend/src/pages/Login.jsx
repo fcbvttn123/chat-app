@@ -6,7 +6,7 @@ import { Separator } from "../components/Separator"
 import { TextInput } from "../components/TextInput"
 import { useContext, useState } from "react"
 import { callPostAPI } from "../utils/functions"
-import { AuthContext } from "../context/AuthContext"
+import { AUTH_CONTEXT_ACTION_TYPE, AuthContext } from "../context/AuthContext"
 
 export function Login() {
   // State Variables
@@ -39,7 +39,10 @@ export function Login() {
         import.meta.env.VITE__LOCAL_STORAGE_KEY_USER_TOKEN,
         JSON.stringify(loginResult)
       )
-      dispatch({ type: "SET_TOKEN", payload: loginResult.token })
+      dispatch({
+        type: AUTH_CONTEXT_ACTION_TYPE.SET_TOKEN,
+        payload: loginResult.token,
+      })
       navigate("/")
     }
     setFormData({

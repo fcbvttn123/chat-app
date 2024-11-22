@@ -28,7 +28,10 @@ export function RegisterAccount() {
         import.meta.env.VITE__LOCAL_STORAGE_KEY_USER_TOKEN,
         JSON.stringify(registerResult)
       )
-      dispatch({ type: "SET_TOKEN", payload: registerResult.token })
+      dispatch({
+        type: AUTH_CONTEXT_ACTION_TYPE.SET_TOKEN,
+        payload: registerResult.token,
+      })
       navigate("/")
     }
     setFormData({
