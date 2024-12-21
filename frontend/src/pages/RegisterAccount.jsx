@@ -4,7 +4,7 @@ import { Separator } from "../components/Separator"
 import { TextInput } from "../components/TextInput"
 import { useContext, useState } from "react"
 import { callPostAPI } from "../utils/functions"
-import { AuthContext } from "../context/AuthContext"
+import { AUTH_CONTEXT_ACTION_TYPE, AuthContext } from "../context/AuthContext"
 
 export function RegisterAccount() {
   // State Variables
