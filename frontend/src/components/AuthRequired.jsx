@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { Navigate, Outlet } from "react-router-dom"
-import { AuthContext } from "../context/AuthContext"
 
 export function AuthRequired() {
   const [loading, setLoading] = useState(true)
@@ -33,7 +32,7 @@ export function AuthRequired() {
     }
     let token = JSON.parse(
       localStorage.getItem("REACT_CHAT_APP_V3_USER_TOKEN")
-    ).token
+    )?.token
     verifyToken(token)
   }, [])
   if (loading) {

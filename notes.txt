@@ -1,6 +1,6 @@
 + Next
 
-    -> Bug: when /chat-page route is refreshed, user is redirected to /login route
+    -> Add error and loading handling for AuthRequired.jsx file
 
 
 + RUN PROJECT
