@@ -1,33 +1,46 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Navigate, Outlet } from "react-router-dom"
 import { AuthContext } from "../context/AuthContext"
 
 export function AuthRequired() {
-  const { token } = useContext(AuthContext)
   const [loading, setLoading] = useState(true)
   const [authenticated, setAuthenticated] = useState(false)
-  fetch(`${import.meta.env.VITE__BACKEND_URL}/api/auth/verifyToken`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data)
-      if (data.status === "Valid Token") {
-        setAuthenticated(true)
+  useEffect(() => {
+    async function verifyToken(token) {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE__BACKEND_URL}/api/auth/verifyToken`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`)
+        }
+        const data = await response.json()
+        if (data.status == "Valid Token") {
+          setAuthenticated(true)
+          setLoading(false)
+        }
+      } catch (error) {
+        setLoading(false)
+        console.log(error.message)
       }
-      setLoading(false)
-    })
-  if (loading) {
-    console.log("loading")
-    return <div>Loading...</div>
-  } else {
-    if (!authenticated) {
-      return <Navigate to="/login" />
     }
-    return <Outlet />
+    let token = JSON.parse(
+      localStorage.getItem("REACT_CHAT_APP_V3_USER_TOKEN")
+    ).token
+    verifyToken(token)
+  }, [])
+  if (loading) {
+    return <div>Loading...</div>
   }
+  if (!authenticated) {
+    return <Navigate to="/login" />
+  }
+  return <Outlet />
 }
