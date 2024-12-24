@@ -37,8 +37,10 @@ async function verifyToken(req, res) {
   try {
     const { _id } = jwt.verify(token, process.env.SECRET)
     // The select() function will only return the id of the document instead of the whole document
-    req.user = await AccountCollection.findOne({ _id }).select("_id")
-    res.status(200).json({ status: "Valid Token" })
+    req.user = await AccountCollection.findOne({ _id }).select("_id username")
+    res
+      .status(200)
+      .json({ status: "Valid Token", username: req?.user?.username })
   } catch (error) {
     console.log(error)
     res.status(401).json({ error: "Invalid Token" })

@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Navigate, Outlet } from "react-router-dom"
+import { AUTH_CONTEXT_ACTION_TYPE, AuthContext } from "../context/AuthContext"
 
 export function AuthRequired() {
   // State variables
   const [loading, setLoading] = useState(true)
   const [authenticated, setAuthenticated] = useState(false)
   const [error, setError] = useState(false)
+  const { dispatch } = useContext(AuthContext)
   // Side Effects Code
   useEffect(() => {
     // Define an async function to verify token for login
@@ -25,9 +27,15 @@ export function AuthRequired() {
           throw new Error(`HTTP error! Status: ${response.status}`)
         }
         const data = await response.json()
-        data.status == "Valid Token"
-          ? setAuthenticated(true)
-          : setError("Invalid token. Please log in.")
+        if (data.status == "Valid Token") {
+          setAuthenticated(true)
+          dispatch({
+            type: AUTH_CONTEXT_ACTION_TYPE.SET_TOKEN,
+            payload: { token: token, username: data.username },
+          })
+        } else {
+          setError("Invalid token. Please log in.")
+        }
       } catch (error) {
         console.error("Error verifying token:", error.message)
         setError(`Error verifying token: ${err.message}`)
