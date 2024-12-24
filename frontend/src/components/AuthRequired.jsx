@@ -4,6 +4,7 @@ import { Navigate, Outlet } from "react-router-dom"
 export function AuthRequired() {
   const [loading, setLoading] = useState(true)
   const [authenticated, setAuthenticated] = useState(false)
+  const [error, setError] = useState(false)
   useEffect(() => {
     async function verifyToken(token) {
       try {
@@ -21,22 +22,31 @@ export function AuthRequired() {
           throw new Error(`HTTP error! Status: ${response.status}`)
         }
         const data = await response.json()
-        if (data.status == "Valid Token") {
-          setAuthenticated(true)
-          setLoading(false)
-        }
+        data.status == "Valid Token"
+          ? setAuthenticated(true)
+          : setError("Invalid token. Please log in.")
       } catch (error) {
+        console.error("Error verifying token:", error.message)
+        setError(`Error verifying token: ${err.message}`)
+      } finally {
         setLoading(false)
-        console.log(error.message)
       }
     }
     let token = JSON.parse(
       localStorage.getItem("REACT_CHAT_APP_V3_USER_TOKEN")
     )?.token
+    if (!token) {
+      setLoading(false)
+      setError("No token found. Please log in.")
+      return
+    }
     verifyToken(token)
   }, [])
   if (loading) {
     return <div>Loading...</div>
+  }
+  if (error) {
+    return <Navigate to="/login" />
   }
   if (!authenticated) {
     return <Navigate to="/login" />
