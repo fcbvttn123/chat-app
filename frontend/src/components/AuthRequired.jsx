@@ -2,10 +2,13 @@ import { useEffect, useState } from "react"
 import { Navigate, Outlet } from "react-router-dom"
 
 export function AuthRequired() {
+  // State variables
   const [loading, setLoading] = useState(true)
   const [authenticated, setAuthenticated] = useState(false)
   const [error, setError] = useState(false)
+  // Side Effects Code
   useEffect(() => {
+    // Define an async function to verify token for login
     async function verifyToken(token) {
       try {
         const response = await fetch(
@@ -32,24 +35,31 @@ export function AuthRequired() {
         setLoading(false)
       }
     }
+    // Getting token from local storage
     let token = JSON.parse(
       localStorage.getItem("REACT_CHAT_APP_V3_USER_TOKEN")
     )?.token
+    // Check if the token is available in the local storage
     if (!token) {
       setLoading(false)
       setError("No token found. Please log in.")
       return
     }
+    // Start verifying the token
     verifyToken(token)
   }, [])
+  // Let user knows that the token is be verified
   if (loading) {
     return <div>Loading...</div>
   }
+  // Redirect to login page if an error appears during token verification
   if (error) {
     return <Navigate to="/login" />
   }
+  // Redirect to login page if token is invalid
   if (!authenticated) {
     return <Navigate to="/login" />
   }
+  // If nothing is wrong, continue to chat page
   return <Outlet />
 }
