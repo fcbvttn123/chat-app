@@ -10,7 +10,8 @@ export const authReducer = (state, action) => {
   switch (action.type) {
     case "SET_TOKEN":
       return {
-        token: action.payload,
+        token: action?.payload?.token,
+        username: action?.payload?.username,
       }
     default:
       return state
@@ -20,14 +21,8 @@ export const authReducer = (state, action) => {
 export function AuthContextProvider({ children }) {
   const [state, dispatch] = useReducer(authReducer, {
     token: null,
+    username: null,
   })
-  useEffect(() => {
-    const localStorageData = JSON.parse(
-      localStorage.getItem(import.meta.env.VITE__LOCAL_STORAGE_KEY_USER_TOKEN)
-    )
-    localStorageData?.token &&
-      dispatch({ type: "SET_TOKEN", payload: localStorageData.token })
-  }, [])
   return (
     <AuthContext.Provider value={{ ...state, dispatch }}>
       {children}

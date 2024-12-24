@@ -20,6 +20,7 @@ export function RegisterAccount() {
   async function formSubmitted(e) {
     e.preventDefault()
     setIsLoading(true)
+    // loginResult is an object with token and username: {token: "", username: ""}
     let registerResult = await callPostAPI("/api/auth/register", formData)
     if (registerResult?.error) {
       setError(registerResult.error)
@@ -30,7 +31,7 @@ export function RegisterAccount() {
       )
       dispatch({
         type: AUTH_CONTEXT_ACTION_TYPE.SET_TOKEN,
-        payload: registerResult.token,
+        payload: registerResult,
       })
       navigate("/")
     }

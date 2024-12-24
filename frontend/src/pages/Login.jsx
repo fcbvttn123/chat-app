@@ -31,6 +31,7 @@ export function Login() {
   async function loginFormSubmitted(e) {
     e.preventDefault()
     setIsLoading(true)
+    // loginResult is an object with token and username: {token: "", username: ""}
     let loginResult = await callPostAPI("/api/auth/login", formData)
     if (loginResult?.error) {
       setError(loginResult.error)
@@ -41,7 +42,7 @@ export function Login() {
       )
       dispatch({
         type: AUTH_CONTEXT_ACTION_TYPE.SET_TOKEN,
-        payload: loginResult.token,
+        payload: loginResult,
       })
       navigate("/")
     }

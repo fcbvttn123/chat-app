@@ -1,7 +1,5 @@
 + Next
 
-    -> Add error and loading handling for AuthRequired.jsx file
-
 
 + RUN PROJECT
 
