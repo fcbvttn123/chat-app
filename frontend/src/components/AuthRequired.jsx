@@ -38,7 +38,7 @@ export function AuthRequired() {
         }
       } catch (error) {
         console.error("Error verifying token:", error.message)
-        setError(`Error verifying token: ${err.message}`)
+        setError(`Error verifying token: ${error.message}`)
       } finally {
         setLoading(false)
       }
