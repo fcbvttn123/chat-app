@@ -1,8 +1,8 @@
 + Next
 
-    -> Document code again
+    -> Fix error in console: User token can not be empty
 
-    -> Start adding StreamChat to ChatPage
+    -> Add channel delete feature to chat page
 
 
 + RUN PROJECT
@@ -67,6 +67,8 @@
 
         user.js
 
+        streamChat.js
+
     ./utils
 
         functions.js
@@ -94,6 +96,8 @@
     /api/auth/register
 
     /api/auth/verifyToken
+
+    /api/auth/createStreamChatToken
 
 
 + LEARNING
