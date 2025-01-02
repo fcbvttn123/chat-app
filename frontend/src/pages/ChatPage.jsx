@@ -18,6 +18,8 @@ import {
 import "stream-chat-react/dist/css/v2/index.css"
 import { ChannelPreviewActionButtons as DefaultChannelPreviewActionButtons } from "stream-chat-react"
 import clsx from "clsx"
+// Imports for React Icons
+import { MdDelete } from "react-icons/md"
 
 function CustomListItem(props) {
   const {
@@ -57,7 +59,6 @@ function CustomListItem(props) {
 
   return (
     <div className="str-chat__channel-preview-container">
-      <ChannelPreviewActionButtons channel={channel} />
       <button
         aria-label={`Select Channel: ${displayTitle || ""}`}
         aria-selected={active}
@@ -99,6 +100,12 @@ function CustomListItem(props) {
           <div className="str-chat__channel-preview-messenger--last-message">
             {latestMessagePreview}
           </div>
+          <button
+            className="absolute right-[10px] top-1/2 transform -translate-y-1/2"
+            onClick={(e) => console.log("Delete")}
+          >
+            <MdDelete className="text-2xl" />
+          </button>
         </div>
       </button>
     </div>
