@@ -4,6 +4,8 @@
 
     -> Add channel delete feature to chat page
 
+    -> Mobile Design for Chat Page
+
 
 + RUN PROJECT
 
