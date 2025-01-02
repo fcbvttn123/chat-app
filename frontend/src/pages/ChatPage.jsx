@@ -57,6 +57,15 @@ function CustomListItem(props) {
     }
   }
 
+  async function onDeleteChannel(e) {
+    try {
+      const destroy = await channel.delete()
+      console.log(destroy)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <div className="str-chat__channel-preview-container">
       <button
@@ -102,7 +111,7 @@ function CustomListItem(props) {
           </div>
           <button
             className="absolute right-[10px] top-1/2 transform -translate-y-1/2"
-            onClick={(e) => console.log("Delete")}
+            onClick={onDeleteChannel}
           >
             <MdDelete className="text-2xl" />
           </button>
